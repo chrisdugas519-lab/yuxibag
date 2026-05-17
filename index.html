@@ -56,22 +56,52 @@
       background: linear-gradient(180deg, var(--warm-white) 0%, #F8F4EF 100%);
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
+        .avatar {
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--tan), var(--brown));
+      background: linear-gradient(145deg, #C4A882, #A07C4E);
       margin: 0 auto 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Noto Serif TC', serif;
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--warm-white);
-      box-shadow: 0 4px 16px rgba(139, 105, 20, 0.25);
-      letter-spacing: 2px;
+      box-shadow: 0 6px 24px rgba(139, 105, 20, 0.3);
+      position: relative;
     }
+    .avatar::before {
+      content: '';
+      position: absolute;
+      width: 94px;
+      height: 94px;
+      border: 2px dashed rgba(255,255,255,0.35);
+      border-radius: 50%;
+    }
+    .avatar::after {
+      content: '';
+      position: absolute;
+      width: 86px;
+      height: 86px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+    }
+      .avatar-inner {
+        font-family: 'Noto Serif TC', serif;
+        font-size: 30px;
+        font-weight: 700;
+        color: #FFF8F0;
+        letter-spacing: 1px;
+        z-index: 1;
+        text-shadow: 0 2px 8px rgba(61, 43, 31, 0.2);
+      }
+      .avatar-sub {
+        position: absolute;
+        bottom: 20px;
+        font-size: 8px;
+        color: rgba(255,255,255,0.6);
+        letter-spacing: 2px;
+        font-weight: 400;
+      }
+
 
     .brand-name {
       font-family: 'Noto Serif TC', serif;
@@ -251,7 +281,11 @@
 <body>
   <div class="card">
     <div class="hero">
-      <div class="avatar">玉</div>
+            <div class="avatar">
+        <div class="avatar-inner">御玺</div>
+        <div class="avatar-sub">工坊</div>
+      </div>
+
       <h1 class="brand-name">手工包審美</h1>
       <p class="brand-handle">@yuxi.bag</p>
       <div class="divider"></div>
