@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>御玺工坊 · 手工包審美</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --cream:    #F5F0EB;
+      --warm:     #F8F4EF;
+      --tan:      #B8956A;
+      --brown:    #8B6914;
+      --dark:     #3D2B1F;
+      --charcoal: #2C2C2A;
+      --gold:     #C9A96E;
+      --line:     #06C755;
+      --ig-pink:  #E4405F;
+      --wx-green:  #07C160;
+    }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px 64px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #FFFDF9;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(61,43,31,0.10);
+      animation: fadeUp 0.9s ease-out;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(24px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      padding: 52px 32px 36px;
+      text-align: center;
+      background: linear-gradient(170deg, #FFFDF9 0%, #F8F4EF 60%, #EDE8E2 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,170,130,0.12), transparent 70%);
+    }
+
+    .brand-en {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 10px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .brand-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 6px;
+      margin-bottom: 2px;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--tan);
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 32px;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 18px;
+    }
+
+    .tagline {
+      font-size: 13.5px;
+      color: #7A6E60;
+      line-height: 2;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== CONTENT ===== */
+    .content {
+      padding: 0 28px 36px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 32px 0 18px;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 3px;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,149,106,0.3));
+    }
+    .section-label::after {
+      background: linear-gradient(90deg, rgba(184,149,106,0.3), transparent);
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-size: 14.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.35s cubic-bezier(.4,0,.2,1);
+      margin-bottom: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-line {
+      background: var(--line);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(6,199,85,0.20);
+    }
+    .btn-line:hover {
+      background: #00A845;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(6,199,85,0.30);
+    }
+
+    .btn-ig {
+      background: #fff;
+      color: var(--charcoal);
+      border: 1.5px solid #E8E0D8;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .btn-ig:hover {
+      border-color: var(--ig-pink);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(228,64,95,0.12);
+    }
+
+    .btn-wx {
+      background: var(--wx-green);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(7,193,96,0.20);
+    }
+    .btn-wx:hover {
+      background: #06A852;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(7,193,96,0.30);
+    }
+
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .btn-note {
+      font-size: 11px;
+      color: rgba(255,255,255,0.72);
+      margin-left: -4px;
+    }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: linear-gradient(135deg, #FCF9F5, #F8F4EF);
+      border: 1px solid rgba(200,170,130,0.18);
+      border-radius: 14px;
+      padding: 24px 20px;
+      margin: 4px 0 8px;
+    }
+    .info-box h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+    }
+    .info-step {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+    .info-step:last-of-type { margin-bottom: 0; }
+    .step-num {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--tan));
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .step-text {
+      font-size: 13px;
+      color: #6B5D4F;
+      line-height: 1.7;
+    }
+    .info-highlight {
+      display: inline-block;
+      background: linear-gradient(0deg, rgba(201,169,110,0.18) 40%, transparent 40%);
+      color: var(--brown);
+      font-weight: 500;
+      padding: 0 2px;
+    }
+    .info-badge {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--tan);
+      letter-spacing: 1px;
+    }
+    .info-badge span {
+      background: rgba(201,169,110,0.12);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-top: 4px;
+    }
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #EDE8E2;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-item .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(61,43,31,0.35), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex;
+      align-items: flex-end;
+      padding: 10px;
+      font-size: 10px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+    .gallery-item:hover .overlay { opacity: 1; }
+
+    /* ===== MATERIALS ===== */
+    .materials {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .material-item {
+      text-align: center;
+    }
+    .material-icon {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F8F4EF, #EDE8E2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px;
+      font-size: 18px;
+    }
+    .material-label {
+      font-size: 10.5px;
+      color: #9A8E80;
+      letter-spacing: 1px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      text-align: center;
+      padding: 20px 28px;
+      font-size: 10.5px;
+      color: #B8A898;
+      border-top: 1px solid rgba(200,170,130,0.12);
+      line-height: 1.8;
+    }
+    .footer .brand {
+      font-family: 'Noto Serif TC', serif;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 10px 48px; }
+      .card { border-radius: 18px; }
+      .hero { padding: 44px 24px 30px; }
+      .content { padding: 0 20px 28px; }
+      .brand-name { font-size: 26px; letter-spacing: 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="brand-en">Yuxi Leather Atelier</div>
+      <h1 class="brand-name">禦璽工坊</h1>
+      <div class="brand-sub">YUXI · BAG</div>
+      <div class="divider"></div>
+      <p class="tagline">
+        從一張皮料到一只包<br>
+        手工縫線 · 每一針都是獨一無二<br>
+        耐看 · 不撞款 · 属于你的皮革故事
+      </p>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="content">
+
+      <div class="section-label">聯 繫 我</div>
+
+      <a href="https://line.me/ti/p/_8hxGQZtQP" class="btn btn-line" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+        LINE 聯繫我（最快回覆）
+        <span class="btn-note">約 5 分鐘內回覆</span>
+      </a>
+
+      <a href="weixin://dl/chat?lx17277703600" class="btn btn-wx">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.135 0 .242-.11.242-.245a.38.38 0 00-.04-.178l-.325-1.233a.492.492 0 01.178-.554C23.028 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122zm-2.18 2.769c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982z"/></svg>
+        微信 WeChat · lx17277703600
+      </a>
+
+      <a href="https://instagram.com/yuxi.bag" class="btn btn-ig" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        Instagram · @yuxi.bag
+      </a>
+
+      <!-- CUSTOM ORDER -->
+      <div class="section-label">如 何 定 制</div>
+
+      <div class="info-box">
+        <h3>定制一隻手工包 · 三步完成</h3>
+        <div class="info-step">
+          <div class="step-num">1</div>
+          <div class="step-text">加 <span class="info-highlight">LINE</span> 告訴我你的需求<br>包型 · 皮料 · 配色 · 五金</div>
+        </div>
+        <div class="info-step">
+          <div class="step-num">2</div>
+          <div class="step-text">我會提供 <span class="info-highlight">配色方案</span> 與報價<br>確認後即將始製作</div>
+        </div>
+        <div class="info-step">
+          <div class="step-num">3</div>
+          <div class="step-text">製作期約 <span class="info-highlight">2–3 週</span><br>完成後拍照確認 · 國際寄送</div>
+        </div>
+        <div class="info-badge">
+          <span>備註「IG來的」 · 專屬優惠</span>
+        </div>
+      </div>
+
+      <!-- MATERIALS -->
+      <div class="section-label">選 用 皮 料</div>
+      <div class="materials">
+        <div class="material-item">
+          <div class="material-icon">� leather</div>
+          <div class="material-label">法國</div>
+        </div>
+        <div class="material-item">
+          <div class="material-icon">🇮🇹</div>
+          <div class="material-label">義大利</div>
+        </div>
+        <div class="material-item">
+          <div class="material-icon">🪡</div>
+          <div class="material-label">手工縫線</div>
+        </div>
+        <div class="material-item">
+          <div class="material-icon">✨</div>
+          <div class="material-label">一件定制</div>
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="section-label">作 品 集</div>
+      <div class="gallery">
+        <a href="work1.jpg" target="_blank" class="gallery-item">
+          <img src="work1.jpg" alt="手工包作品 · 愛馬仕風格" loading="lazy">
+          <div class="overlay">Hermès 風 · 手縫</div>
+        </a>
+        <a href="work2.jpg" target="_blank" class="gallery-item">
+          <img src="work2.jpg" alt="手工包作品 · 客製化" loading="lazy">
+          <div class="overlay">客製配色</div>
+        </a>
+        <a href="work3.jpg" target="_blank" class="gallery-item">
+          <img src="work3.jpg" alt="手工包作品 · 完工實拍" loading="lazy">
+          <div class="overlay">完工實拍</div>
+        </a>
+      </div>
+
+    </div><!-- /content -->
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span class="brand">yuxi.bag</span> · 手工包審美 · 耐看、不撞款<br>
+      © 2026 禦璽工坊 Yuxi Leather Atelier
+    </div>
+
+  </div><!-- /card -->
+</body>
+</html>
