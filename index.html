@@ -1,452 +1,1740 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>御玺工坊 · 手工包審美</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing: border-box; }
-    :root {
-      --cream:    #F5F0EB;
-      --warm:     #F8F4EF;
-      --tan:      #B8956A;
-      --brown:    #8B6914;
-      --dark:     #3D2B1F;
-      --charcoal: #2C2C2A;
-      --gold:     #C9A96E;
-      --line:     #06C755;
-      --ig-pink:  #E4405F;
-      --wx-green:  #07C160;
-    }
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      background: var(--cream);
-      color: var(--charcoal);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 32px 16px 64px;
-      -webkit-font-smoothing: antialiased;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>御玺工坊 | 手工皮具定制 · YUXI BAG</title>
+    <meta name="description" content="御玺工坊提供專業手工皮具定制服務。從皮料選擇到成品製作，為您打造專屬奢華。耐看、不撞款。">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      background: #FFFDF9;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 12px 48px rgba(61,43,31,0.10);
-      animation: fadeUp 0.9s ease-out;
-    }
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    @keyframes fadeUp {
-      from { opacity:0; transform: translateY(24px); }
-      to   { opacity:1; transform: translateY(0); }
-    }
+        :root {
+            --bg: #FAF8F5;
+            --text: #1a1a1a;
+            --muted: #7a756d;
+            --accent: #c9a87c;
+            --border: #e8e4dd;
+            --navy: #1C1917;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+        }
 
-    /* ===== HERO ===== */
-    .hero {
-      position: relative;
-      padding: 52px 32px 36px;
-      text-align: center;
-      background: linear-gradient(170deg, #FFFDF9 0%, #F8F4EF 60%, #EDE8E2 100%);
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -40px; right: -40px;
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,170,130,0.12), transparent 70%);
-    }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            font-size: 15px;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .brand-en {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 10px;
-      letter-spacing: 5px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
+        /* ===== NAV BAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(250,248,245,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 900;
+            transition: all 0.3s ease;
+        }
 
-    .brand-name {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 30px;
-      font-weight: 700;
-      color: var(--dark);
-      letter-spacing: 6px;
-      margin-bottom: 2px;
-    }
+        .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.04); }
 
-    .brand-sub {
-      font-size: 12px;
-      color: var(--tan);
-      letter-spacing: 3px;
-      margin-bottom: 20px;
-    }
+        .nav-logo {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--text);
+            text-decoration: none;
+        }
 
-    .divider {
-      width: 32px;
-      height: 1.5px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 0 auto 18px;
-    }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
 
-    .tagline {
-      font-size: 13.5px;
-      color: #7A6E60;
-      line-height: 2;
-      letter-spacing: 0.5px;
-    }
+        .nav-link {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.25s ease;
+            position: relative;
+            cursor: pointer;
+            padding: 4px 0;
+        }
 
-    /* ===== CONTENT ===== */
-    .content {
-      padding: 0 28px 36px;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.3s var(--ease);
+        }
 
-    .section-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 32px 0 18px;
-      font-family: 'Noto Serif TC', serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--brown);
-      letter-spacing: 3px;
-    }
-    .section-label::before,
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(184,149,106,0.3));
-    }
-    .section-label::after {
-      background: linear-gradient(90deg, rgba(184,149,106,0.3), transparent);
-    }
+        .nav-link:hover { color: var(--text); }
+        .nav-link:hover::after { width: 100%; }
 
-    /* ===== BUTTONS ===== */
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 15px 20px;
-      border-radius: 12px;
-      border: none;
-      font-family: 'Noto Sans TC', sans-serif;
-      font-size: 14.5px;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.35s cubic-bezier(.4,0,.2,1);
-      margin-bottom: 11px;
-      letter-spacing: 0.5px;
-    }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-    .btn-line {
-      background: var(--line);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(6,199,85,0.20);
-    }
-    .btn-line:hover {
-      background: #00A845;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(6,199,85,0.30);
-    }
+        .nav-lang {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+        }
 
-    .btn-ig {
-      background: #fff;
-      color: var(--charcoal);
-      border: 1.5px solid #E8E0D8;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-    }
-    .btn-ig:hover {
-      border-color: var(--ig-pink);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(228,64,95,0.12);
-    }
+        .nav-lang-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            padding: 4px 0;
+            min-width: 120px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(-50%) translateY(-4px);
+            transition: all 0.2s ease;
+            z-index: 999;
+        }
 
-    .btn-wx {
-      background: var(--wx-green);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(7,193,96,0.20);
-    }
-    .btn-wx:hover {
-      background: #06A852;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(7,193,96,0.30);
-    }
+        .nav-lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
 
-    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+        .lang-option {
+            display: block;
+            width: 100%;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.15s ease;
+        }
 
-    .btn-note {
-      font-size: 11px;
-      color: rgba(255,255,255,0.72);
-      margin-left: -4px;
-    }
+        .lang-option:hover { background: var(--bg); }
+        .lang-option.active { color: var(--accent); font-weight: 600; }
 
-    /* ===== INFO BOX ===== */
-    .info-box {
-      background: linear-gradient(135deg, #FCF9F5, #F8F4EF);
-      border: 1px solid rgba(200,170,130,0.18);
-      border-radius: 14px;
-      padding: 24px 20px;
-      margin: 4px 0 8px;
-    }
-    .info-box h3 {
-      font-family: 'Noto Serif TC', serif;
-      font-size: 14.5px;
-      font-weight: 600;
-      color: var(--dark);
-      text-align: center;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
-    .info-step {
-      display: flex;
-      gap: 13px;
-      align-items: flex-start;
-      margin-bottom: 14px;
-    }
-    .info-step:last-of-type { margin-bottom: 0; }
-    .step-num {
-      flex-shrink: 0;
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--tan));
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1px;
-    }
-    .step-text {
-      font-size: 13px;
-      color: #6B5D4F;
-      line-height: 1.7;
-    }
-    .info-highlight {
-      display: inline-block;
-      background: linear-gradient(0deg, rgba(201,169,110,0.18) 40%, transparent 40%);
-      color: var(--brown);
-      font-weight: 500;
-      padding: 0 2px;
-    }
-    .info-badge {
-      text-align: center;
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--tan);
-      letter-spacing: 1px;
-    }
-    .info-badge span {
-      background: rgba(201,169,110,0.12);
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-weight: 500;
-    }
+        .btn-nav-outline {
+            padding: 9px 18px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: transparent;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
 
-    /* ===== GALLERY ===== */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 7px;
-      margin-top: 4px;
-    }
-    .gallery-item {
-      position: relative;
-      aspect-ratio: 1;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #EDE8E2;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    .gallery-item .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(61,43,31,0.35), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.35s;
-      display: flex;
-      align-items: flex-end;
-      padding: 10px;
-      font-size: 10px;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-    .gallery-item:hover .overlay { opacity: 1; }
+        .btn-nav-outline:hover { border-color: var(--text); }
 
-    /* ===== MATERIALS ===== */
-    .materials {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-    .material-item {
-      text-align: center;
-    }
-    .material-icon {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #F8F4EF, #EDE8E2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 6px;
-      font-size: 18px;
-    }
-    .material-label {
-      font-size: 10.5px;
-      color: #9A8E80;
-      letter-spacing: 1px;
-    }
+        .btn-nav-whatsapp {
+            padding: 9px 18px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: transparent;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    /* ===== FOOTER ===== */
-    .footer {
-      text-align: center;
-      padding: 20px 28px;
-      font-size: 10.5px;
-      color: #B8A898;
-      border-top: 1px solid rgba(200,170,130,0.12);
-      line-height: 1.8;
-    }
-    .footer .brand {
-      font-family: 'Noto Serif TC', serif;
-      color: var(--gold);
-      letter-spacing: 1px;
-    }
+        .btn-nav-whatsapp:hover { border-color: var(--text); background: rgba(0,0,0,0.03); }
 
-    @media (max-width: 480px) {
-      body { padding: 20px 10px 48px; }
-      .card { border-radius: 18px; }
-      .hero { padding: 44px 24px 30px; }
-      .content { padding: 0 20px 28px; }
-      .brand-name { font-size: 26px; letter-spacing: 4px; }
-    }
-  </style>
+        .btn-nav-whatsapp svg { width: 14px; height: 14px; }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 64px;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 60px 80px 80px;
+        }
+
+        .hero-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 36px;
+            height: 1px;
+            background: var(--text);
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 1.08;
+            color: var(--text);
+            margin-bottom: 28px;
+            letter-spacing: -1px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 420px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 56px;
+        }
+
+        .btn-hero-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: var(--navy);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(28,25,23,0.15);
+        }
+
+        .btn-hero-primary:hover {
+            background: #2a2523;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(28,25,23,0.25);
+        }
+
+        .btn-hero-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(28,25,23,0.15);
+        }
+
+        .btn-hero-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--text);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-hero-secondary:hover {
+            border-color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 52px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-num {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 400;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* HERO RIGHT IMAGE */
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+            background: #f0ebe3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .hero-right img {
+            width: 100%;
+            height: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            mix-blend-mode: difference;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 120px 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        /* ===== FEATURED / COLLECTIONS ===== */
+        .featured-section {
+            padding: 120px 80px;
+            background: #fff;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 60px auto 0;
+        }
+
+        .featured-visual {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f2ee;
+            aspect-ratio: 4/5;
+        }
+
+        .featured-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .featured-title {
+            font-family: var(--font-serif);
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .featured-subtitle {
+            font-size: 18px;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .featured-desc {
+            font-size: 15px;
+            line-height: 1.75;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .featured-pricing {
+            font-size: 13px;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 28px;
+        }
+
+        .featured-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .featured-spec {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--text);
+            cursor: default;
+            transition: all 0.25s ease;
+        }
+
+        .featured-spec:hover {
+            border-color: var(--text);
+            background: rgba(0,0,0,0.02);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .collection-card {
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f5f2ee;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== FEATURES / HOW IT WORKS ===== */
+        .features-section {
+            background: var(--bg);
+            padding: 120px 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 64px;
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .feature-item {
+            padding: 40px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+        }
+
+        .feature-item h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .feature-item p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .process-section {
+            background: #fff;
+            padding: 120px 80px;
+            margin-top: 0;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            text-align: center;
+        }
+
+        .process-step-num {
+            font-family: var(--font-serif);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .process-step h3 {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .process-step p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 60px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            background: #f5f2ee;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 48px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .faq-q {
+            width: 100%;
+            padding: 22px 28px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            transition: background 0.2s ease;
+        }
+
+        .faq-q:hover { background: #fafafa; }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--muted);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-q::after { transform: rotate(45deg); }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s var(--ease);
+        }
+
+        .faq-item.open .faq-a { max-height: 200px; }
+
+        .faq-a-inner {
+            padding: 0 28px 22px;
+            font-size: 13px;
+            line-height: 1.75;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 80px 80px 40px;
+            background: #fff;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .footer-col-title {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .footer-links-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            font-size: 13px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.25s ease;
+            font-weight: 300;
+        }
+
+        .footer-link:hover { color: var(--text); }
+
+        .footer-contact-item {
+            font-size: 13px;
+            color: var(--muted);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact-item strong {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .footer-copy {
+            font-size: 11px;
+            color: rgba(122,117,109,0.5);
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        /* ===== MODAL / POPUP ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: #fff;
+            width: 480px;
+            max-width: 90vw;
+            padding: 52px 44px;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+            animation: modalIn 0.4s var(--ease);
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.96) translateY(16px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px; right: 16px;
+            width: 32px; height: 32px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover { color: var(--text); }
+
+        .modal-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-family: var(--font-serif);
+            font-size: 34px;
+            font-weight: 400;
+            color: var(--text);
+            margin-bottom: 16px;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+
+        .modal-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-modal-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: var(--navy);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.25s ease;
+        }
+
+        .btn-modal-primary:hover { background: #333; }
+
+        .btn-modal-primary svg { width: 16px; height: 16px; }
+
+        .btn-modal-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            color: var(--text);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: border-color 0.25s ease;
+        }
+
+        .btn-modal-secondary:hover { border-color: var(--text); }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--navy);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+            z-index: 800;
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+            cursor: pointer;
+        }
+
+        .wa-float:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 38px rgba(0,0,0,0.24);
+        }
+
+        .wa-float svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+        .wa-float-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.3;
+        }
+
+        .wa-float-text strong {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .wa-float-text span {
+            font-size: 10px;
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        .wa-icon-circle {
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--text);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: #faf8f5;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 28px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.35s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu a {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: zoom-out;
+            backdrop-filter: blur(20px);
+        }
+
+        .lightbox.active { opacity: 1; visibility: visible; }
+
+        .lightbox img {
+            max-width: 88%;
+            max-height: 86vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-x {
+            position: absolute;
+            top: 20px; right: 20px;
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-x:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg); }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        /* ===== REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s var(--ease);
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .navbar { padding: 0 24px; }
+            .nav-links { gap: 20px; }
+            .nav-right { gap: 12px; }
+            .btn-nav-outline, .btn-nav-whatsapp { padding: 7px 12px; font-size: 10px; }
+            .hero-title { font-size: 48px; }
+            .section-title { font-size: 36px; }
+            .section { padding: 80px 48px; }
+            .hero-left { padding: 60px 40px; }
+            .process-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-section { padding: 80px 48px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 0 24px; }
+            .nav-links, .nav-right { display: none; }
+            .mobile-toggle { display: block; }
+
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-left { padding: 100px 24px 48px; order: 1; }
+            .hero-right { height: 55vh; order: 0; }
+
+            .hero-title { font-size: 36px; }
+            .hero-stats { flex-wrap: wrap; gap: 28px; }
+            .hero-stat { min-width: 100px; }
+            .hero-buttons { flex-direction: column; }
+
+            .section { padding: 60px 24px; }
+            .section-title { font-size: 28px; }
+
+            .collections-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+            .process-grid { grid-template-columns: 1fr; gap: 28px; }
+            .process-section { padding: 60px 24px; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 36px; }
+
+            .featured-grid { grid-template-columns: 1fr; gap: 36px; }
+            .featured-section { padding: 60px 24px; }
+            .featured-visual { aspect-ratio: 1/1; }
+
+            .features-grid { grid-template-columns: 1fr; gap: 20px; }
+            .features-section { padding: 60px 24px; }
+            .feature-item { padding: 28px; }
+
+            .footer { padding: 60px 24px 30px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+
+            .wa-float span { display: none; }
+            .wa-float { padding: 12px 16px; border-radius: 50%; }
+            .wa-float-text { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 30px; }
+            .stat-num { font-size: 32px; }
+            .collections-grid { grid-template-columns: 1fr; }
+            .modal { padding: 36px 24px; }
+            .modal-title { font-size: 28px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+            .featured-title { font-size: 32px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="brand-en">Yuxi Leather Atelier</div>
-      <h1 class="brand-name">禦璽工坊</h1>
-      <div class="brand-sub">YUXI · BAG</div>
-      <div class="divider"></div>
-      <p class="tagline">
-        從一張皮料到一只包<br>
-        手工縫線 · 每一針都是獨一無二<br>
-        耐看 · 不撞款 · 属于你的皮革故事
-      </p>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">御玺工坊</a>
+    
+    <div class="nav-links">
+        <a href="#collections" class="nav-link" data-i18n="nav.collections">Collections</a>
+        <a href="#features" class="nav-link" data-i18n="nav.features">Features</a>
+        <a href="#process" class="nav-link" data-i18n="nav.process">How it works</a>
+        <a href="#about" class="nav-link" data-i18n="nav.about">About</a>
+        <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
     </div>
 
-    <!-- CONTACT -->
-    <div class="content">
-
-      <div class="section-label">聯 繫 我</div>
-
-      <a href="https://line.me/ti/p/_8hxGQZtQP" class="btn btn-line" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
-        LINE 聯繫我（最快回覆）
-        <span class="btn-note">約 5 分鐘內回覆</span>
-      </a>
-
-      <a href="weixin://dl/chat?lx17277703600" class="btn btn-wx">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.045c.135 0 .242-.11.242-.245a.38.38 0 00-.04-.178l-.325-1.233a.492.492 0 01.178-.554C23.028 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122zm-2.18 2.769c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982z"/></svg>
-        微信 WeChat · lx17277703600
-      </a>
-
-      <a href="https://instagram.com/yuxi.bag" class="btn btn-ig" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Instagram · @yuxi.bag
-      </a>
-
-      <!-- CUSTOM ORDER -->
-      <div class="section-label">如 何 定 制</div>
-
-      <div class="info-box">
-        <h3>定制一隻手工包 · 三步完成</h3>
-        <div class="info-step">
-          <div class="step-num">1</div>
-          <div class="step-text">加 <span class="info-highlight">LINE</span> 告訴我你的需求<br>包型 · 皮料 · 配色 · 五金</div>
-        </div>
-        <div class="info-step">
-          <div class="step-num">2</div>
-          <div class="step-text">我會提供 <span class="info-highlight">配色方案</span> 與報價<br>確認後即將始製作</div>
-        </div>
-        <div class="info-step">
-          <div class="step-num">3</div>
-          <div class="step-text">製作期約 <span class="info-highlight">2–3 週</span><br>完成後拍照確認 · 國際寄送</div>
-        </div>
-        <div class="info-badge">
-          <span>備註「IG來的」 · 專屬優惠</span>
-        </div>
-      </div>
-
-      <!-- MATERIALS -->
-      <div class="section-label">選 用 皮 料</div>
-      <div class="materials">
-        <div class="material-item">
-          <div class="material-icon">� leather</div>
-          <div class="material-label">法國</div>
-        </div>
-        <div class="material-item">
-          <div class="material-icon">🇮🇹</div>
-          <div class="material-label">義大利</div>
-        </div>
-        <div class="material-item">
-          <div class="material-icon">🪡</div>
-          <div class="material-label">手工縫線</div>
-        </div>
-        <div class="material-item">
-          <div class="material-icon">✨</div>
-          <div class="material-label">一件定制</div>
-        </div>
-      </div>
-
-      <!-- GALLERY -->
-      <div class="section-label">作 品 集</div>
-      <div class="gallery">
-        <a href="work1.jpg" target="_blank" class="gallery-item">
-          <img src="work1.jpg" alt="手工包作品 · 愛馬仕風格" loading="lazy">
-          <div class="overlay">Hermès 風 · 手縫</div>
+    <div class="nav-right">
+        <span class="nav-lang" id="navLang" onclick="toggleLangDropdown(event)">
+            <span id="currentLangLabel">繁體中文</span> ▾
+            <div class="nav-lang-dropdown" id="langDropdown">
+                <button class="lang-option active" data-lang="zhtw" onclick="switchLang('zhtw', event)">繁體中文</button>
+                <button class="lang-option" data-lang="zhcn" onclick="switchLang('zhcn', event)">简体中文</button>
+                <button class="lang-option" data-lang="en" onclick="switchLang('en', event)">English</button>
+            </div>
+        </span>
+        <button class="btn-nav-outline" onclick="openModal()" data-i18n="nav.btn_inquiry">定制咨询</button>
+        <a href="javascript:void(0)" class="btn-nav-whatsapp" onclick="navigator.clipboard.writeText('lx17277703600');this.innerHTML='<svg viewBox=\\'0 0 24 24\\' fill=\\'currentColor\\'><path d=\\'M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122z\\'/><path d=\\'M22.806 14.98c0-1.454-.804-2.783-2.03-3.586a5.43 5.43 0 00-.165-.12c-.069.788-.32 1.538-.708 2.188.697.314 1.356.85 1.356 1.606 0 .447-.289.82-.654 1.058-.337.22-.537.526-.537.888 0 .098.022.174.047.25l.245.924-.878-.513a1.436 1.436 0 00-.744-.18c.32.495.48 1.094.48 1.737 0 .107-.017.21-.024.316.44.135.904.212 1.39.212.634 0 1.22-.093 1.717-.261a.722.722 0 01.598.082l.954.559a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.197-.747a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 17.376 24 16.28 24 14.98z\\'/></svg>Copied!';setTimeout(()=>{this.innerHTML=\\'<svg viewBox=\\"0 0 24 24\\" fill=\\"currentColor\\"><path d=\\"M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122z\\"/></svg> WeChat\\'},2000)">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122z"/></svg> WeChat
         </a>
-        <a href="work2.jpg" target="_blank" class="gallery-item">
-          <img src="work2.jpg" alt="手工包作品 · 客製化" loading="lazy">
-          <div class="overlay">客製配色</div>
-        </a>
-        <a href="work3.jpg" target="_blank" class="gallery-item">
-          <img src="work3.jpg" alt="手工包作品 · 完工實拍" loading="lazy">
-          <div class="overlay">完工實拍</div>
-        </a>
-      </div>
-
-    </div><!-- /content -->
-
-    <!-- FOOTER -->
-    <div class="footer">
-      <span class="brand">yuxi.bag</span> · 手工包審美 · 耐看、不撞款<br>
-      © 2026 禦璽工坊 Yuxi Leather Atelier
     </div>
 
-  </div><!-- /card -->
+    <button class="mobile-toggle" onclick="toggleMobileMenu()">☰</button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+    <a href="#collections" onclick="closeMobile()" data-i18n="nav.collections">Collections</a>
+    <a href="#features" onclick="closeMobile()" data-i18n="nav.features">Features</a>
+    <a href="#process" onclick="closeMobile()" data-i18n="nav.process">How it works</a>
+    <a href="#about" onclick="closeMobile()" data-i18n="nav.about">About</a>
+    <a href="#faq" onclick="closeMobile()" data-i18n="nav.faq">FAQ</a>
+    <a href="javascript:void(0)" onclick="navigator.clipboard.writeText('lx17277703600');alert('WeChat ID copied: lx17277703600');closeMobile()" data-i18n="nav.wechat">微信咨询</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-left">
+        <div class="hero-label" data-i18n="hero.label">YUXI BAG 手工定制</div>
+        <h1 class="hero-title" data-i18n="hero.title">手工皮具<br>從皮料到成品<br>全程記錄。</h1>
+        <p class="hero-desc" data-i18n="hero.desc">
+            分享手工皮革包的配色與製作日常。
+            喜歡耐看、不撞款的包，
+            為您量身打造專屬奢華。
+        </p>
+        <div class="hero-buttons">
+            <a href="javascript:void(0)" class="btn-hero-primary" onclick="openModal()" data-i18n="hero.btn_inquiry">Start Inquiry</a>
+            <a href="#collections-grid" class="btn-hero-secondary" data-i18n="hero.btn_view">View Collections</a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="stat-num" data-i18n="hero.stat1_num">200+</div>
+                <div class="stat-label" data-i18n="hero.stat1_label">完成定制</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-num" data-i18n="hero.stat2_num">100%</div>
+                <div class="stat-label" data-i18n="hero.stat2_label">純手作</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-num" data-i18n="hero.stat3_num">頭層牛皮</div>
+                <div class="stat-label" data-i18n="hero.stat3_label">嚴選皮料</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-right">
+        <img src="bagnxt_images/hero.jpg" alt="手工皮革包作品" data-i18n="hero.img_alt" loading="eager">
+        <span class="hero-badge">EST. 2023</span>
+    </div>
+</section>
+
+<!-- ===== FEATURED PIECE ===== -->
+<section id="collections" class="featured-section reveal">
+    <div class="section-header" style="max-width:1100px;margin:0 auto;">
+        <div class="section-label" data-i18n="featured.label">精選單品</div>
+        <h2 class="section-title" data-i18n="featured.title">Featured Piece</h2>
+    </div>
+    <div class="featured-grid">
+        <div class="featured-visual">
+            <img src="bagnxt_images/product_1.webp" alt="代表作品" loading="lazy">
+        </div>
+        <div class="featured-info">
+            <span class="featured-badge" data-i18n="featured.badge">代表作品</span>
+            <h2 class="featured-title" data-i18n="featured.name">手工托特包</h2>
+            <p class="featured-subtitle" data-i18n="featured.subtitle">頭層牛皮 · 純手縫</p>
+            <p class="featured-desc" data-i18n="featured.desc">
+                以經典托特包型為基礎，採用嚴選頭層牛皮，
+                全程手工裁切、打孔、縫合。
+                每一針一線都經過精細打磨，
+                展現我們對手工皮具的堅持與熱愛。
+            </p>
+            <p class="featured-pricing" data-i18n="featured.pricing">價格將在確認皮料與尺寸後私下溝通。</p>
+            <div class="featured-specs">
+                <span class="featured-spec" data-i18n="featured.spec1">手工縫製</span>
+                <span class="featured-spec" data-i18n="featured.spec2">頭層牛皮</span>
+                <span class="featured-spec" data-i18n="featured.spec3">黃銅五金</span>
+                <span class="featured-spec" data-i18n="featured.spec4">可定制配色</span>
+                <span class="featured-spec" data-i18n="featured.spec5">全套配件</span>
+            </div>
+            <a href="javascript:void(0)" class="btn-hero-primary" onclick="openModal()" data-i18n="featured.btn">諮詢這只包</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== COLLECTIONS GRID ===== -->
+<section id="collections-grid" class="collections-section reveal">
+        <div class="section-header">
+            <div class="section-label" data-i18n="collections.label">收藏系列</div>
+            <h2 class="section-title" data-i18n="collections.title">Collections</h2>
+        </div>
+        <div class="collections-grid">
+            <div class="collection-card" onclick="openLightbox(0)">
+                <img src="bagnxt_images/01-57280a3a18ac3dcf.webp" alt="手工皮革包 1" data-i18n="collections.img1" loading="lazy">
+            </div>
+            <div class="collection-card" onclick="openLightbox(1)">
+                <img src="bagnxt_images/01-cf2aaf0f3f30ca54.webp" alt="手工皮革包 2" data-i18n="collections.img2" loading="lazy">
+            </div>
+            <div class="collection-card" onclick="openLightbox(2)">
+                <img src="bagnxt_images/01-5c6a635af2df5616.webp" alt="手工皮革包 3" data-i18n="collections.img3" loading="lazy">
+            </div>
+            <div class="collection-card" onclick="openLightbox(3)">
+                <img src="bagnxt_images/01-649854c2c1451ff0.webp" alt="手工皮革包 4" data-i18n="collections.img4" loading="lazy">
+            </div>
+            <div class="collection-card" onclick="openLightbox(4)">
+                <img src="bagnxt_images/01-c451568ca305c697.webp" alt="手工皮革包 5" data-i18n="collections.img5" loading="lazy">
+            </div>
+            <div class="collection-card" onclick="openLightbox(5)">
+                <img src="bagnxt_images/01-abc1509f2e993a19.webp" alt="手工皮革包 6" data-i18n="collections.img6" loading="lazy">
+            </div>
+        </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features" class="features-section reveal">
+    <div style="max-width:1100px;margin:0 auto;">
+        <div class="section-header">
+            <div class="section-label" data-i18n="features.label">服務特色</div>
+            <h2 class="section-title" data-i18n="features.title">Why YUXI</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3 data-i18n="features.1_title">嚴選皮料</h3>
+                <p data-i18n="features.1_desc">每只包在製作前都會精挑細選皮料，確保紋路、厚度、柔韌度達到最佳狀態，從源頭把控品質。</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-i18n="features.2_title">純手工製作</h3>
+                <p data-i18n="features.2_desc">堅持雙針手縫工藝，不用機器替代。每一針都經過反覆校對，確保線跡整齊、結構牢固。</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-i18n="features.3_title">全程記錄</h3>
+                <p data-i18n="features.3_desc">從裁切到縫合，每個關鍵步驟拍照記錄，讓你親眼見證一只包的誕生過程。</p>
+            </div>
+            <div class="feature-item">
+                <h3 data-i18n="features.4_title">專屬定制</h3>
+                <p data-i18n="features.4_desc">同一位工匠從頭跟到尾，確保每個細節都符合你的需求。配色、尺寸、五金均可定制。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section id="process" class="process-section reveal">
+    <div style="max-width:1100px;margin:0 auto;">
+        <div class="section-header">
+            <div class="section-label" data-i18n="process.label">定制流程</div>
+            <h2 class="section-title" data-i18n="process.title">How it Works</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-step-num" data-i18n="process.1_num">Step 01</div>
+                <h3 data-i18n="process.1_title">諮詢需求</h3>
+                <p data-i18n="process.1_desc">透過微信告诉我你的想法、款式偏好、用途和預算。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-step-num" data-i18n="process.2_num">Step 02</div>
+                <h3 data-i18n="process.2_title">配色方案</h3>
+                <p data-i18n="process.2_desc">我會根據你的需求提供多種皮料配色方案和詳細報價。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-step-num" data-i18n="process.3_num">Step 03</div>
+                <h3 data-i18n="process.3_title">開始製作</h3>
+                <p data-i18n="process.3_desc">確認方案後開始製作，每個步驟拍照記錄給你看。</p>
+            </div>
+            <div class="process-step">
+                <div class="process-step-num" data-i18n="process.4_num">Step 04</div>
+                <h3 data-i18n="process.4_title">品檢交付</h3>
+                <p data-i18n="process.4_desc">約 2-3 週完成，經過最終品檢後交付到您手中。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="section reveal">
+        <div class="section-header">
+            <div class="section-label" data-i18n="about.label">品牌故事</div>
+            <h2 class="section-title" data-i18n="about.title">關於我們</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p data-i18n="about.p1">
+                    每一只包都從選擇皮料開始，經過裁切、縫合、打磨，到最終成型。
+                    我們堅持使用頭層牛皮，純手工製作，
+                    確保每一個細節都達到最高標準。
+                </p>
+                <p data-i18n="about.p2">
+                    從皮料到成品的每一個步驟，都是我們對匠心的堅持。
+                    記錄一只包的誕生過程，是我們對手工藝的敬意。
+                </p>
+            </div>
+        <div class="about-image">
+            <img src="bagnxt_images/product_2.webp" alt="手工製作細節" data-i18n="about.img_alt" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section reveal">
+        <div class="section-header">
+            <div class="section-label" data-i18n="faq.label">常見問題</div>
+            <h2 class="section-title" data-i18n="faq.title">FAQ</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q1" onclick="toggleFaq(this)">定制一只包需要多久？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a1">一般來說，從確認設計到完成交付需要 2-3 週。具體時間取決於包款的複雜程度和皮料的稀缺性。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q2" onclick="toggleFaq(this)">可以指定哪些皮料？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a2">我们提供多种头层牛皮选择，包括 TOGO、EPSOM 等常用皮料，也可根据需求特殊订购。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q3" onclick="toggleFaq(this)">可以參考其他品牌的款式嗎？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a3">我們可以參考設計元素，但不做完全複製。會根據你的喜好重新設計，確保獨一無二。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q4" onclick="toggleFaq(this)">售後服務如何？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a4">我們提供終身免費基礎保養服務。如有五金損壞或特殊維修需求，費用另行計算。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q5" onclick="toggleFaq(this)">支持全球配送嗎？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a5">是的，支持全球配送。台灣境內免運費，海外地區需額外支付運費。</div></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q" data-i18n="faq.q6" onclick="toggleFaq(this)">價格範圍大概是多少？</button>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.a6">根据皮料、尺寸和复杂度不同，价格会有所差异。请加微信告诉我您的需求，我会提供详细报价。</div></div>
+            </div>
+        </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <div class="footer-brand" data-i18n="footer.brand">YUXI BAG</div>
+            <p class="footer-desc" data-i18n="footer.desc">手工皮具定制，從皮料到成品全程記錄。為你打造專屬、耐看、不撞款的包包。</p>
+        </div>
+        <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.collections">Collections</div>
+            <div class="footer-links-col">
+                <a href="#collections" class="footer-link" data-i18n="footer.col1_link1">精選單品</a>
+                <a href="#features" class="footer-link" data-i18n="footer.col1_link2">服務特色</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.company">Company</div>
+            <div class="footer-links-col">
+                <a href="#about" class="footer-link" data-i18n="footer.col2_link1">關於我們</a>
+                <a href="#process" class="footer-link" data-i18n="footer.col2_link2">定制流程</a>
+                <a href="#faq" class="footer-link" data-i18n="footer.col2_link3">常見問題</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer.contact">Contact</div>
+            <div class="footer-contact-item">
+                <strong data-i18n="footer.wechat_label">WeChat</strong>
+                <span class="footer-link" style="cursor:pointer" onclick="navigator.clipboard.writeText('lx17277703600');this.textContent='Copied!';setTimeout(()=>{this.textContent='lx17277703600'},1500)">lx17277703600</span>
+            </div>
+            <div class="footer-contact-item">
+                <strong data-i18n="footer.ig_label">Instagram</strong>
+                <div class="footer-links-col">
+                    <a href="https://instagram.com/yuxigongfang_official" target="_blank" class="footer-link">@yuxigongfang_official</a>
+                    <a href="https://instagram.com/yuxigongfang_boutique" target="_blank" class="footer-link">@yuxigongfang_boutique</a>
+                    <a href="https://instagram.com/yuxigongfang_global" target="_blank" class="footer-link">@yuxigongfang_global</a>
+                    <a href="https://instagram.com/yuxigongfang_custom" target="_blank" class="footer-link">@yuxigongfang_custom</a>
+                    <a href="https://instagram.com/yuxi_premium_vault" target="_blank" class="footer-link">@yuxi_premium_vault</a>
+                </div>
+            </div>
+            <div class="footer-contact-item">
+                <strong data-i18n="footer.hours_label">Hours</strong>
+                <span data-i18n="footer.hours_val">週一至週五 9:00 – 18:00<br>週六 10:00 – 16:00</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copy">&copy; 2023–2026 御玺工坊 YUXI BAG. All rights reserved.</div>
+</footer>
+
+<!-- ===== MODAL POPUP ===== -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal">
+        <button class="modal-close" onclick="closeModal(event)">✕</button>
+        <div class="modal-label" data-i18n="modal.label">御玺工坊</div>
+        <h2 class="modal-title" data-i18n="modal.title">私人定制</h2>
+        <p class="modal-desc" data-i18n="modal.desc">探索可定製款式，或提交您的 sourcing 需求，讓我們為您打造專屬的手工皮具。</p>
+        <div class="modal-btns">
+            <a href="javascript:void(0)" class="btn-modal-primary" onclick="navigator.clipboard.writeText('lx17277703600');this.querySelector('span').textContent='Copied!';setTimeout(()=>{this.querySelector('span').textContent='Add WeChat'},1500)">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122z"/></svg>
+                <span data-i18n="modal.btn_wechat">Add WeChat</span>
+            </a>
+            <a href="#collections" class="btn-modal-secondary" onclick="closeModal(event)" data-i18n="modal.btn_view">View Collections</a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FLOATING WECHAT BUTTON ===== -->
+<a href="javascript:void(0)" class="wa-float" onclick="navigator.clipboard.writeText('lx17277703600');var t=this.querySelector('.wa-float-text strong');var o=t.textContent;t.textContent='Copied!';setTimeout(function(){t.textContent=o},1500)">
+    <div class="wa-icon-circle">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.952-7.062-6.122z"/></svg>
+    </div>
+    <div class="wa-float-text">
+        <strong data-i18n="float.title">WeChat</strong>
+        <span data-i18n="float.subtitle">lx17277703600</span>
+    </div>
+</a>
+
+<!-- ===== LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox" onclick="closeLb(event)">
+    <button class="lightbox-x" onclick="closeLb(event)">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();navigateLb(-1)">‹</button>
+    <img src="" alt="" id="lb-img">
+    <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();navigateLb(1)">›</button>
+</div>
+
+
+<script>
+// ===== i18n Translations =====
+const translations = {
+  // Nav
+  "nav.collections": { zhtw:"Collections", zhcn:"Collections", en:"Collections" },
+  "nav.features":    { zhtw:"Features", zhcn:"Features", en:"Features" },
+  "nav.process":     { zhtw:"How it works", zhcn:"How it works", en:"How it works" },
+  "nav.about":       { zhtw:"About", zhcn:"About", en:"About" },
+  "nav.faq":         { zhtw:"FAQ", zhcn:"FAQ", en:"FAQ" },
+  "nav.wechat":        { zhtw:"微信咨询", zhcn:"微信咨询", en:"WeChat" },
+  "nav.btn_inquiry": { zhtw:"定制咨询", zhcn:"定制咨询", en:"Inquire" },
+
+  // Hero
+  "hero.label":      { zhtw:"YUXI BAG 手工定制", zhcn:"YUXI BAG 手工定制", en:"YUXI BAG Handmade" },
+  "hero.title":      { zhtw:"手工皮具<br>從皮料到成品<br>全程記錄。", zhcn:"手工皮具<br>从皮料到成品<br>全程记录。", en:"Handmade Leather<br>From HIde To Finish<br>Fully Documented." },
+  "hero.desc":       { zhtw:"分享手工皮革包的配色與製作日常。喜歡耐看、不撞款的包，為您量身打造專屬奢華。", zhcn:"分享手工皮革包的配色与制作日常。喜欢耐看、不撞款的包，为您量身打造专属奢华。", en:"Sharing the craft of handmade leather bags. Bespoke luxury, made-to-order, never off the shelf." },
+  "hero.btn_inquiry":{ zhtw:"Start Inquiry", zhcn:"Start Inquiry", en:"Start Inquiry" },
+  "hero.btn_view":   { zhtw:"View Collections", zhcn:"View Collections", en:"View Collections" },
+  "hero.stat1_num":  { zhtw:"200+", zhcn:"200+", en:"200+" },
+  "hero.stat1_label":{ zhtw:"完成定制", zhcn:"完成定制", en:"Orders Done" },
+  "hero.stat2_num":  { zhtw:"100%", zhcn:"100%", en:"100%" },
+  "hero.stat2_label":{ zhtw:"純手作", zhcn:"纯手作", en:"Handmade" },
+  "hero.stat3_num":  { zhtw:"頭層牛皮", zhcn:"头层牛皮", en:"Top-Grain Leather" },
+  "hero.stat3_label":{ zhtw:"嚴選皮料", zhcn:"严选皮料", en:"Premium HIde" },
+  "hero.img_alt":     { zhtw:"手工皮革包作品", zhcn:"手工皮革包作品", en:"Handmade Leather Bag" },
+
+  // Featured
+  "featured.label":   { zhtw:"精選單品", zhcn:"精选单品", en:"Featured Piece" },
+  "featured.title":   { zhtw:"Featured Piece", zhcn:"Featured Piece", en:"Featured Piece" },
+  "featured.badge":   { zhtw:"代表作品", zhcn:"代表作品", en:"Featured" },
+  "featured.name":    { zhtw:"手工托特包", zhcn:"手工托特包", en:"Handmade Tote Bag" },
+  "featured.subtitle": { zhtw:"頭層牛皮 · 純手縫", zhcn:"头层牛皮 · 纯手缝", en:"Top-Grain Leather · Hand Stitched" },
+  "featured.desc":    { zhtw:"以經典托特包型為基礎，採用嚴選頭層牛皮，全程手工裁切、打孔、縫合。每一針一線都經過精細打磨，展現我們對手工皮具的堅持與熱愛。", zhcn:"以经典托特包型为基础，采用严选头层牛皮，全程手工裁切、打孔、缝合。每一针一线都经过精细打磨，展现我们对手工皮具的坚持与热爱。", en:"Based on the classic tote shape, crafted from premium top-grain leather. Every stitch is hand-pierced and sewn with meticulous attention — a true testament to our passion for leathercraft." },
+  "featured.pricing": { zhtw:"價格將在確認皮料與尺寸後私下溝通。", zhcn:"价格将在确认皮料与尺寸后私下沟通。", en:"Pricing will be discussed privately after confirming leather and size." },
+  "featured.spec1":   { zhtw:"手工縫製", zhcn:"手工缝制", en:"Hand Stitched" },
+  "featured.spec2":   { zhtw:"頭層牛皮", zhcn:"头层牛皮", en:"Top-Grain Leather" },
+  "featured.spec3":   { zhtw:"黃銅五金", zhcn:"黄铜五金", en:"Brass Hardware" },
+  "featured.spec4":   { zhtw:"可定制配色", zhcn:"可定制配色", en:"Custom Colors" },
+  "featured.spec5":   { zhtw:"全套配件", zhcn:"全套配件", en:"Full Accessories" },
+  "featured.btn":      { zhtw:"諮詢這只包", zhcn:"咨询这只包", en:"Inquire Now" },
+
+  // Features
+  "features.label":    { zhtw:"服務特色", zhcn:"服务特色", en:"Why YUXI" },
+  "features.title":    { zhtw:"Why YUXI", zhcn:"Why YUXI", en:"Why YUXI" },
+  "features.1_title": { zhtw:"嚴選皮料", zhcn:"严选皮料", en:"Premium Leather" },
+  "features.1_desc":  { zhtw:"每只包在製作前都會精挑細選皮料，確保紋路、厚度、柔韌度達到最佳狀態，從源頭把控品質。", zhcn:"每只包在制作前都会精挑细选皮料，确保纹路、厚度、柔韧度达到最佳状态，从源头把控品质。", en:"Every hide is carefully selected before crafting — ensuring grain, thickness, and suppleness meet our standards. Quality control starts at the source." },
+  "features.2_title": { zhtw:"純手工製作", zhcn:"纯手工制作", en:"100% Handmade" },
+  "features.2_desc":  { zhtw:"堅持雙針手縫工藝，不用機器替代。每一針都經過反覆校對，確保線跡整齊、結構牢固。", zhcn:"坚持双针手缝工艺，不用机器替代。每一针都经过反复校对，确保线迹整齐、结构牢固。", en:"We use the saddle-stitching technique — no machine. Every stitch is double-checked for uniform spacing and rock-solid durability." },
+  "features.3_title": { zhtw:"全程記錄", zhcn:"全程记录", en:"Fully Documented" },
+  "features.3_desc":  { zhtw:"從裁切到縫合，每個關鍵步驟拍照記錄，讓你親眼見證一只包的誕生過程。", zhcn:"从裁切到缝合，每个关键步骤拍照记录，让你亲眼见证一只包的诞生过程。", en:"From cutting to stitching, every key step is photographed and shared with you. Witness your bag's birth, step by step." },
+  "features.4_title": { zhtw:"專屬定制", zhcn:"专属定制", en:"Bespoke Service" },
+  "features.4_desc":  { zhtw:"同一位工匠從頭跟到尾，確保每個細節都符合你的需求。配色、尺寸、五金均可定制。", zhcn:"同一位工匠从头跟到尾，确保每个细节都符合你的需求。配色、尺寸、五金均可定制。", en:"One artisan from start to finish — every detail tailored to you. Colors, size, and hardware all customizable." },
+
+  // Process
+  "process.label":    { zhtw:"定制流程", zhcn:"定制流程", en:"How It Works" },
+  "process.title":    { zhtw:"How it Works", zhcn:"How it Works", en:"How It Works" },
+  "process.1_num":    { zhtw:"Step 01", zhcn:"Step 01", en:"Step 01" },
+  "process.1_title":  { zhtw:"諮詢需求", zhcn:"咨询需求", en:"Consultation" },
+  "process.1_desc":   { zhtw:"透過微信告诉我你的想法、款式偏好、用途和預算。", zhcn:"透过微信告诉我你的想法、款式偏好、用途和预算。", en:"Tell us your ideas, style preferences, use case, and budget via WeChat." },
+  "process.2_num":    { zhtw:"Step 02", zhcn:"Step 02", en:"Step 02" },
+  "process.2_title":  { zhtw:"配色方案", zhcn:"配色方案", en:"Color Proposal" },
+  "process.2_desc":   { zhtw:"我會根據你的需求提供多種皮料配色方案和詳細報價。", zhcn:"我会根据你的需求提供多种皮料配色方案和详细报价。", en:"We provide multiple leather color options and a detailed quote based on your needs." },
+  "process.3_num":    { zhtw:"Step 03", zhcn:"Step 03", en:"Step 03" },
+  "process.3_title":  { zhtw:"開始製作", zhcn:"开始制作", en:"Start Crafting" },
+  "process.3_desc":   { zhtw:"確認方案後開始製作，每個步驟拍照記錄給你看。", zhcn:"确认方案后开始制作，每个步骤拍照记录给你看。", en:"Once confirmed, crafting begins. Photos of each step are shared with you." },
+  "process.4_num":    { zhtw:"Step 04", zhcn:"Step 04", en:"Step 04" },
+  "process.4_title":  { zhtw:"品檢交付", zhcn:"品检交付", en:"QC & Delivery" },
+  "process.4_desc":   { zhtw:"約 2-3 週完成，經過最終品檢後交付到您手中。", zhcn:"约 2-3 周完成，经过最终品检后交付到您手中。", en:"Ready in 2-3 weeks. Thoroughly inspected and delivered to your door." },
+
+  // About
+  "about.label":      { zhtw:"品牌故事", zhcn:"品牌故事", en:"Our Story" },
+  "about.title":      { zhtw:"關於我們", zhcn:"关于我们", en:"About Us" },
+  "about.p1":        { zhtw:"每一只包都從選擇皮料開始，經過裁切、縫合、打磨，到最終成型。我們堅持使用頭層牛皮，純手工製作，確保每一個細節都達到最高標準。", zhcn:"每一只包都从选择皮料开始，经过裁切、缝合、打磨，到最终成型。我们坚持使用头层牛皮，纯手工制作，确保每个细节都达到最高标准。", en:"Every bag starts with hide selection, then cutting, stitching, burnishing, and final shaping. We insist on top-grain leather and 100% handcraft — every detail meets our highest standards." },
+  "about.p2":        { zhtw:"從皮料到成品的每一個步驟，都是我們對匠心的堅持。記錄一只包的誕生過程，是我們對手工藝的敬意。", zhcn:"从皮料到成品的每一个步骤，都是我们对匠心的坚持。记录一只包的诞生过程，是我们对手工艺的敬意。", en:"Every step from hide to finished bag reflects our commitment to craftsmanship. Documenting a bag's birth is our tribute to the art of leatherwork." },
+
+  "about.img_alt":  { zhtw:"手工製作細節", zhcn:"手工制作细节", en:"Handmade Craftsmanship Detail" },
+
+  // FAQ
+  "faq.label":        { zhtw:"常見問題", zhcn:"常见问题", en:"FAQ" },
+  "faq.title":        { zhtw:"FAQ", zhcn:"FAQ", en:"FAQ" },
+  "faq.q1":          { zhtw:"定制一只包需要多久？", zhcn:"定制一只包需要多久？", en:"How long does a custom bag take?" },
+  "faq.a1":          { zhtw:"一般來說，從確認設計到完成交付需要 2-3 週。具體時間取決於包款的複雜程度和皮料的稀缺性。", zhcn:"一般来说，从确认设计到完成交付需要 2-3 周。具体时间取决于包款的复杂程度和皮料的稀缺性。", en:"Typically 2-3 weeks from confirmed design to delivery. Timeline depends on complexity and leather availability." },
+  "faq.q2":          { zhtw:"可以指定哪些皮料？", zhcn:"可以指定哪些皮料？", en:"What leather options do you offer?" },
+  "faq.a2":          { zhtw:"我们提供多种头层牛皮选择，包括 TOGO、EPSOM 等常用皮料，也可根据需求特殊订购。", zhcn:"我们提供多种头层牛皮选择，包括 TOGO、EPSOM 等常用皮料，也可根据需求特殊订购。", en:"We offer various top-grain leathers including TOGO, EPSOM, and other premium leathers. Special orders available upon request." },
+  "faq.q3":          { zhtw:"可以參考其他品牌的款式嗎？", zhcn:"可以参考其他品牌的款式吗？", en:"Can you reference other brands' designs?" },
+  "faq.a3":          { zhtw:"我們可以參考設計元素，但不做完全複製。會根據你的喜好重新設計，確保獨一無二。", zhcn:"我们可以参考设计元素，但不做完全复制。会根据你的喜好重新设计，确保独一无二。", en:"We can take design inspiration, but never direct copies. Each piece is redesigned to be one-of-a-kind." },
+  "faq.q4":          { zhtw:"售後服務如何？", zhcn:"售后服务如何？", en:"What about after-sales service?" },
+  "faq.a4":          { zhtw:"我們提供終身免費基礎保養服務。如有五金損壞或特殊維修需求，費用另行計算。", zhcn:"我们提供终身免费基础保养服务。如有五金损坏或特殊维修需求，费用另行计算。", en:"Lifetime free basic conditioning service. Hardware replacement or special repairs billed separately." },
+  "faq.q5":          { zhtw:"支持全球配送嗎？", zhcn:"支持全球配送吗？", en:"Do you ship globally?" },
+  "faq.a5":          { zhtw:"是的，支持全球配送。台灣境內免運費，海外地區需額外支付運費。", zhcn:"是的，支持全球配送。台湾境内免运费，海外地区需额外支付运费。", en:"Yes, worldwide shipping available. Free shipping within Taiwan. Overseas shipping charged separately." },
+  "faq.q6":          { zhtw:"價格範圍大概是多少？", zhcn:"价格范围大概是多少？", en:"What's the price range?" },
+  "faq.a6":          { zhtw:"根据皮料、尺寸和复杂度不同，价格会有所差异。请加微信告诉我您的需求，我会提供详细报价。", zhcn:"根据皮料、尺寸和复杂度不同，价格会有所差异。请加微信告诉我您的需求，我会提供详细报价。", en:"Price varies by leather, size, and complexity. Add our WeChat and share your requirements — we'll provide a detailed quote." },
+
+  // Collections
+  "collections.label": { zhtw:"收藏系列", zhcn:"收藏系列", en:"Collections" },
+  "collections.title": { zhtw:"Collections", zhcn:"Collections", en:"Collections" },
+
+  // Footer
+  "footer.brand":      { zhtw:"YUXI BAG", zhcn:"YUXI BAG", en:"YUXI BAG" },
+  "footer.desc":       { zhtw:"手工皮具定制，從皮料到成品全程記錄。為你打造專屬、耐看、不撞款的包包。", zhcn:"手工皮具定制，从皮料到成品全程记录。为你打造专属、耐看、不撞款的包包。", en:"Bespoke leather goods, documented from hide to finish. Your unique, timeless, one-of-a-kind bag." },
+  "footer.collections": { zhtw:"Collections", zhcn:"Collections", en:"Collections" },
+  "footer.company":    { zhtw:"Company", zhcn:"Company", en:"Company" },
+  "footer.contact":    { zhtw:"Contact", zhcn:"Contact", en:"Contact" },
+  "footer.col1_link1": { zhtw:"精選單品", zhcn:"精选单品", en:"Featured" },
+  "footer.col1_link2": { zhtw:"服務特色", zhcn:"服务特色", en:"Features" },
+  "footer.col2_link1": { zhtw:"關於我們", zhcn:"关于我们", en:"About Us" },
+  "footer.col2_link2": { zhtw:"定制流程", zhcn:"定制流程", en:"Process" },
+  "footer.col2_link3": { zhtw:"常見問題", zhcn:"常见问题", en:"FAQ" },
+  "footer.wechat_label":  { zhtw:"WeChat", zhcn:"WeChat", en:"WeChat" },
+  "footer.ig_label":   { zhtw:"Instagram", zhcn:"Instagram", en:"Instagram" },
+  "footer.hours_label":{ zhtw:"Hours", zhcn:"Hours", en:"Hours" },
+  "footer.hours_val":  { zhtw:"週一至週五 9:00 – 18:00<br>週六 10:00 – 16:00", zhcn:"周一至周五 9:00 – 18:00<br>周六 10:00 – 16:00", en:"Mon-Fri 9:00 – 18:00<br>Sat 10:00 – 16:00" },
+  "footer.copyright":  { zhtw:"© 2023–2026 御玺工坊 YUXI BAG. All rights reserved.", zhcn:"© 2023–2026 御玺工坊 YUXI BAG. All rights reserved.", en:"© 2023–2026 YUXI BAG. All rights reserved." },
+
+  // Modal
+  "modal.label":    { zhtw:"御玺工坊", zhcn:"御玺工坊", en:"YUXI BAG" },
+  "modal.title":    { zhtw:"私人定制", zhcn:"私人定制", en:"Bespoke Order" },
+  "modal.desc":     { zhtw:"探索可定製款式，或提交您的 sourcing 需求，讓我們為您打造專屬的手工皮具。", zhcn:"探索可定制款式，或提交您的 sourcing 需求，让我们为您打造专属的手工皮具。", en:"Explore bespoke styles, or submit your sourcing request. Let us craft your one-of-a-kind leather good." },
+  "modal.btn_wechat":  { zhtw:"Add WeChat", zhcn:"Add WeChat", en:"Add WeChat" },
+  "modal.btn_view":  { zhtw:"View Collections", zhcn:"View Collections", en:"View Collections" },
+
+  // Floating button
+  "float.title":    { zhtw:"WeChat", zhcn:"WeChat", en:"WeChat" },
+  "float.subtitle": { zhtw:"lx17277703600", zhcn:"lx17277703600", en:"lx17277703600" },
+
+  // Collections image alts
+  "collections.img1": { zhtw:"手工皮革包 1", zhcn:"手工皮革包 1", en:"Handmade Leather Bag 1" },
+  "collections.img2": { zhtw:"手工皮革包 2", zhcn:"手工皮革包 2", en:"Handmade Leather Bag 2" },
+  "collections.img3": { zhtw:"手工皮革包 3", zhcn:"手工皮革包 3", en:"Handmade Leather Bag 3" },
+  "collections.img4": { zhtw:"手工皮革包 4", zhcn:"手工皮革包 4", en:"Handmade Leather Bag 4" },
+  "collections.img5": { zhtw:"手工皮革包 5", zhcn:"手工皮革包 5", en:"Handmade Leather Bag 5" },
+  "collections.img6": { zhtw:"手工皮革包 6", zhcn:"手工皮革包 6", en:"Handmade Leather Bag 6" }
+};
+
+let currentLang = 'zhtw';
+
+// Apply translations
+function applyLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang === 'zhtw' ? 'zh-TW' : lang === 'zhcn' ? 'zh-CN' : 'en';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[key] && translations[key][lang]) {
+      if (el.tagName === 'IMG') {
+        el.alt = translations[key][lang];
+      } else {
+        el.innerHTML = translations[key][lang];
+      }
+    }
+  });
+
+  // Update active state on lang dropdown
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+
+  // Update the dropdown label
+  const labels = { zhtw:'繁體中文', zhcn:'简体中文', en:'English' };
+  const labelEl = document.getElementById('currentLangLabel');
+  if (labelEl) labelEl.textContent = labels[lang] || '繁體中文';
+}
+
+function switchLang(lang, event) {
+  if (event) event.stopPropagation();
+  applyLang(lang);
+  closeLangDropdown();
+}
+
+function toggleLangDropdown(event) {
+  if (event) event.stopPropagation();
+  document.getElementById('langDropdown').classList.toggle('active');
+}
+
+function closeLangDropdown() {
+  document.getElementById('langDropdown').classList.remove('active');
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', (e) => {
+  const dd = document.getElementById('langDropdown');
+  if (dd && !dd.parentElement.contains(e.target)) {
+    dd.classList.remove('active');
+  }
+});
+
+// Images – auto-collect all collection card images for lightbox
+const collectionCards = Array.from(document.querySelectorAll('.collection-card'));
+let currentLbIdx = 0;
+
+function openLightbox(i) {
+  currentLbIdx = i;
+  const img = collectionCards[i]?.querySelector('img');
+  if (img) {
+    document.getElementById('lb-img').src = img.src;
+  }
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLb(e) {
+  if (e && e.target !== e.currentTarget && !e.target.classList.contains('lightbox-x') && !e.target.closest('.lightbox-nav')) return;
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function navigateLb(dir) {
+  currentLbIdx = (currentLbIdx + dir + collectionCards.length) % collectionCards.length;
+  const img = collectionCards[currentLbIdx]?.querySelector('img');
+  if (img) document.getElementById('lb-img').src = img.src;
+}
+
+// Keyboard nav for lightbox
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLb();
+  if (document.getElementById('lightbox').classList.contains('active')) {
+    if (e.key === 'ArrowRight') navigateLb(1);
+    if (e.key === 'ArrowLeft') navigateLb(-1);
+  }
+});
+
+// Modal
+function openModal() { document.getElementById('modalOverlay').classList.add('active'); document.body.style.overflow='hidden'; }
+function closeModal(e) {
+  if(e&&e.target!==e.currentTarget&&!e.target.classList.contains('modal-close')&&!e.target.closest('.btn-modal-secondary'))return;
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow='';
+}
+
+// Mobile Menu
+function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('active');}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('active');}
+
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  const nb=document.getElementById('navbar');
+  nb.classList.toggle('scrolled', window.scrollY>20);
+},{passive:true});
+
+// Scroll Reveal
+const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible');});},
+{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// FAQ
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen)item.classList.add('open');
+}
+
+// Init
+applyLang('zhtw');
+</script>
+
+
+<!--
+  GITHUB PAGES DEPLOY:
+  Replace all "bagnxt_images/" with "https://chrisdugas519-lab.github.io/yuxibag/bagnxt_images/"
+  before pushing to the repo.
+-->
 </body>
 </html>
