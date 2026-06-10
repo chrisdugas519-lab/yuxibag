@@ -775,6 +775,136 @@
       100% { text-shadow: 0 0 0 transparent; }
     }
 
+    /* ——— 客户好评滚动区 ——— */
+    .reviews {
+      background: linear-gradient(175deg, #F9F7F3 0%, #F3EFE8 100%);
+      border-radius: 18px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(201,169,110,0.08);
+      position: relative;
+      overflow: hidden;
+      max-height: 310px;
+    }
+
+    .reviews-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--gold-muted);
+      text-align: center;
+      letter-spacing: 4px;
+      padding: 18px 20px 6px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 渐变遮罩（上下边缘淡出） */
+    .reviews::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      border-radius: 18px;
+      background: linear-gradient(180deg,
+        rgba(249,247,243,0.95) 0%, transparent 50px,
+        transparent calc(100% - 50px), rgba(243,239,232,0.95) 100%);
+    }
+
+    .reviews-track {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      animation: reviewScroll 25s linear infinite;
+      will-change: transform;
+    }
+
+    .reviews-track.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes reviewScroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
+    }
+
+    .review-item {
+      display: flex;
+      gap: 12px;
+      padding: 14px 20px;
+      transition: background 0.3s;
+    }
+
+    .review-item:hover {
+      background: rgba(201,169,110,0.04);
+    }
+
+    .review-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #D4B87A, #C9A96E);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 15px;
+      color: white;
+      font-weight: 700;
+      font-family: 'Noto Serif SC', serif;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 30% 25%, rgba(255,255,255,0.25) 0%, transparent 55%);
+    }
+
+    .review-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .review-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    .review-stars {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .review-text {
+      font-size: 12px;
+      color: #6B6359;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .review-text strong {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .review-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,169,110,0.12), transparent);
+      margin: 0 20px;
+      width: calc(100% - 40px);
+    }
+
     /* ——— 响应式 ——— */
     @media (max-width: 420px) {
       body { padding: 20px 10px 40px; }
@@ -872,6 +1002,129 @@
         打开微信添加好友
       </a>
 
+      <!-- 客户好评滚动 -->
+      <div class="reviews reveal">
+        <div class="reviews-title">✦ 客 户 好 评 ✦</div>
+        <div class="reviews-track" id="reviewsTrack">
+          <!-- 评论1 -->
+          <div class="review-item">
+            <div class="review-avatar">陈</div>
+            <div class="review-body">
+              <div class="review-name">陈女士 · 上海</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">定了一只<strong>Kelly 25 大象灰</strong>，走线工整度完全不输专柜，皮料手感和光泽特别高级。朋友都以为是正品，<strong>超值！</strong></div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <!-- 评论2 -->
+          <div class="review-item">
+            <div class="review-avatar">周</div>
+            <div class="review-body">
+              <div class="review-name">周先生 · 深圳</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">Birkin 30 黑金，皮料选了<strong>Togo皮</strong>，手感柔软又有型。师傅很耐心，改了三版配色方案，<strong>服务态度一流</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <!-- 评论3 -->
+          <div class="review-item">
+            <div class="review-avatar">林</div>
+            <div class="review-body">
+              <div class="review-name">林小姐 · 香港</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">第二次回购了！这次订了<strong>Constance 18 金棕</strong>，五金做旧效果特别好，整体质感比上次更精进。<strong>终身售后</strong>真的安心。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <!-- 评论4 -->
+          <div class="review-item">
+            <div class="review-avatar">王</div>
+            <div class="review-body">
+              <div class="review-name">王小姐 · 北京</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">给老婆定了一只 mini Lindy，皮料选的是<strong>Swift小牛皮</strong>，颜色调得特别正。从沟通到收到<strong>一共16天</strong>，效率惊人。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <!-- 评论5 -->
+          <div class="review-item">
+            <div class="review-avatar">刘</div>
+            <div class="review-body">
+              <div class="review-name">刘先生 · 成都</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text"><strong>全球直邮</strong>到纽约只用了7天，包装很用心。B25柠檬黄做得特别正，夏天背非常亮眼，<strong>已经推荐给朋友了</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <!-- 评论6 -->
+          <div class="review-item">
+            <div class="review-avatar">李</div>
+            <div class="review-body">
+              <div class="review-name">李小姐 · 广州</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">做工确实厉害，Roulis 23 走线均匀度和我闺蜜的正品对比几乎<strong>看不出差别</strong>。师傅说每一针都是手工缝制，<strong>细节控狂喜</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+
+          <!-- 重复第一组（无缝循环） -->
+          <div class="review-item">
+            <div class="review-avatar">陈</div>
+            <div class="review-body">
+              <div class="review-name">陈女士 · 上海</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">定了一只<strong>Kelly 25 大象灰</strong>，走线工整度完全不输专柜，皮料手感和光泽特别高级。朋友都以为是正品，<strong>超值！</strong></div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-item">
+            <div class="review-avatar">周</div>
+            <div class="review-body">
+              <div class="review-name">周先生 · 深圳</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">Birkin 30 黑金，皮料选了<strong>Togo皮</strong>，手感柔软又有型。师傅很耐心，改了三版配色方案，<strong>服务态度一流</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-item">
+            <div class="review-avatar">林</div>
+            <div class="review-body">
+              <div class="review-name">林小姐 · 香港</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">第二次回购了！这次订了<strong>Constance 18 金棕</strong>，五金做旧效果特别好，整体质感比上次更精进。<strong>终身售后</strong>真的安心。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-item">
+            <div class="review-avatar">王</div>
+            <div class="review-body">
+              <div class="review-name">王小姐 · 北京</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">给老婆定了一只 mini Lindy，皮料选的是<strong>Swift小牛皮</strong>，颜色调得特别正。从沟通到收到<strong>一共16天</strong>，效率惊人。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-item">
+            <div class="review-avatar">刘</div>
+            <div class="review-body">
+              <div class="review-name">刘先生 · 成都</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text"><strong>全球直邮</strong>到纽约只用了7天，包装很用心。B25柠檬黄做得特别正，夏天背非常亮眼，<strong>已经推荐给朋友了</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+          <div class="review-item">
+            <div class="review-avatar">李</div>
+            <div class="review-body">
+              <div class="review-name">李小姐 · 广州</div>
+              <div class="review-stars">★★★★★</div>
+              <div class="review-text">做工确实厉害，Roulis 23 走线均匀度和我闺蜜的正品对比几乎<strong>看不出差别</strong>。师傅说每一针都是手工缝制，<strong>细节控狂喜</strong>。</div>
+            </div>
+          </div>
+          <div class="review-divider"></div>
+        </div>
+      </div>
+
       <!-- Instagram -->
       <div class="ig-links reveal">
         <p class="section-title">Instagram</p>
@@ -961,6 +1214,20 @@
       }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
 
       document.querySelectorAll('.reveal, .process-step, .gallery-item').forEach(el => observer.observe(el));
+    })();
+
+    // 好评区：悬停暂停 / 触屏按下暂停
+    (function() {
+      var track = document.getElementById('reviewsTrack');
+      if (!track) return;
+
+      var pause = function() { track.classList.add('paused'); };
+      var play  = function() { track.classList.remove('paused'); };
+
+      track.addEventListener('mouseenter', pause);
+      track.addEventListener('mouseleave', play);
+      track.addEventListener('touchstart', pause, { passive: true });
+      track.addEventListener('touchend', play);
     })();
   </script>
 </body>
