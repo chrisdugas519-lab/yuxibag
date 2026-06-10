@@ -43,7 +43,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* 背景纹理粒子 */
+    /* 背景纹理粒子 + 微妙动态光晕 */
     body::before {
       content: '';
       position: fixed;
@@ -54,6 +54,12 @@
         radial-gradient(circle at 20% 10%, rgba(201,169,110,0.04) 0%, transparent 40%),
         radial-gradient(circle at 80% 90%, rgba(201,169,110,0.03) 0%, transparent 40%),
         radial-gradient(circle at 50% 50%, rgba(201,169,110,0.02) 0%, transparent 60%);
+      animation: bgBreathe 12s ease-in-out infinite;
+    }
+
+    @keyframes bgBreathe {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
     /* ——— 主卡片 ——— */
@@ -210,11 +216,31 @@
       background: linear-gradient(135deg, var(--gold), #E8D5B7, var(--gold-bright), var(--gold));
       box-shadow: 0 0 28px rgba(201,169,110,0.18);
       animation: ringPulse 5s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 头像环光泽扫过 */
+    .avatar-ring::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.35) 20%, transparent 40%);
+      animation: ringShimmer 4s linear infinite;
+      pointer-events: none;
     }
 
     @keyframes ringPulse {
       0%, 100% { box-shadow: 0 0 20px rgba(201,169,110,0.12); }
       50% { box-shadow: 0 0 36px rgba(201,169,110,0.24); }
+    }
+
+    @keyframes ringShimmer {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     .avatar {
@@ -476,15 +502,24 @@
     /* Instagram 按钮 */
     .btn-ig {
       background: linear-gradient(135deg, #833AB4 0%, #C13584 40%, #E1306C 65%, #FD1D1D 85%, #F77737 100%);
+      background-size: 200% 200%;
       color: #fff;
       border: none;
       box-shadow: 0 4px 20px rgba(193, 53, 132, 0.28);
       letter-spacing: 0.5px;
+      animation: igGradientShift 5s ease infinite;
     }
 
     .btn-ig:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 32px rgba(193, 53, 132, 0.42);
+      animation-duration: 2s;
+    }
+
+    @keyframes igGradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .btn-ig svg {
@@ -667,6 +702,79 @@
       font-style: italic;
     }
 
+    /* ——— 滚动入场动画 ——— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 定制流程步骤依次入场 */
+    .process-step {
+      opacity: 0;
+      transform: translateX(-12px);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .process-step.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .process-step:nth-child(2).visible { transition-delay: 0.12s; }
+    .process-step:nth-child(3).visible { transition-delay: 0.24s; }
+
+    /* 作品展示卡片依次入场 */
+    .gallery-item {
+      opacity: 0;
+      transform: scale(0.92);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .gallery-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .gallery-item:nth-child(2).visible { transition-delay: 0.1s; }
+    .gallery-item:nth-child(3).visible { transition-delay: 0.2s; }
+
+    /* 微信卡片微浮动 */
+    .wechat-card {
+      animation: wechatFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes wechatFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    /* 分隔线呼吸光 */
+    .divider {
+      animation: dividerGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes dividerGlow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    /* 品牌名加载时微光 */
+    .brand-cn {
+      animation: textGlow 3s ease-in-out 1s;
+    }
+
+    @keyframes textGlow {
+      0% { text-shadow: 0 0 0 transparent; }
+      50% { text-shadow: 0 0 20px rgba(201,169,110,0.15); }
+      100% { text-shadow: 0 0 0 transparent; }
+    }
+
     /* ——— 响应式 ——— */
     @media (max-width: 420px) {
       body { padding: 20px 10px 40px; }
@@ -745,9 +853,9 @@
     <div class="content">
 
       <!-- 微信 -->
-      <p class="section-title">联 系</p>
+      <p class="section-title reveal">联 系</p>
 
-      <div class="wechat-card">
+      <div class="wechat-card reveal">
         <div class="wechat-icon-row">
           <svg class="wechat-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.861.861 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18z"/></svg>
           <span class="wechat-label">WeChat ID</span>
@@ -759,13 +867,13 @@
         </div>
       </div>
 
-      <a href="weixin://dl/chat?lx17277703600" class="btn btn-wechat" target="_blank" rel="noopener">
+      <a href="weixin://dl/chat?lx17277703600" class="btn btn-wechat reveal" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.861.861 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 01.598.082l1.584.926a.272.272 0 00.14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 01-.023-.156.49.49 0 01.201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zM14.825 13.67c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 01-.969.983.976.976 0 01-.969-.983c0-.542.434-.982.97-.982z"/></svg>
         打开微信添加好友
       </a>
 
       <!-- Instagram -->
-      <div class="ig-links">
+      <div class="ig-links reveal">
         <p class="section-title">Instagram</p>
 
         <a href="https://instagram.com/yuxigongfang_official" class="btn btn-ig" target="_blank" rel="noopener">
@@ -800,7 +908,7 @@
       </div>
 
       <!-- 定制流程 -->
-      <div class="process">
+      <div class="process reveal">
         <h3>定 制 流 程</h3>
         <div class="process-step">
           <div class="step-num">1</div>
@@ -818,8 +926,8 @@
       </div>
 
       <!-- 作品展示 -->
-      <p class="section-title">作 品</p>
-      <div class="gallery">
+      <p class="section-title reveal">作 品</p>
+      <div class="gallery reveal">
         <div class="gallery-item">
           <img src="work1.png" alt="作品1" loading="lazy">
         </div>
@@ -830,7 +938,7 @@
           <img src="work3.png" alt="作品3" loading="lazy">
         </div>
       </div>
-      <div class="gallery-more">更多作品请移步 Instagram 查看</div>
+      <div class="gallery-more reveal">更多作品请移步 Instagram 查看</div>
 
     </div>
 
@@ -840,5 +948,20 @@
     </div>
 
   </div>
+
+  <script>
+    // 滚动入场动画
+    (function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('.reveal, .process-step, .gallery-item').forEach(el => observer.observe(el));
+    })();
+  </script>
 </body>
 </html>
