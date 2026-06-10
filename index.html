@@ -339,6 +339,7 @@
       margin: 0 auto;
       font-weight: 300;
       letter-spacing: 1px;
+      visibility: hidden; /* 打字机效果：初始隐藏，JS 打字时显示 */
     }
 
     /* ——— 内容区 ——— */
@@ -862,10 +863,8 @@
 
           <div class="divider"></div>
 
-          <p class="tagline">
-            马家工艺 · 手工定制<br>
-            一只包，一个故事
-          </p>
+          <p class="tagline" id="typewriter" data-text="马家工艺 · 手工定制
+一只包，一个故事"></p>
         </div>
 
         <!-- 右侧装饰 -->
@@ -1010,6 +1009,35 @@
   </div>
 
   <script>
+    // 打字机效果
+    (function() {
+      var el = document.getElementById('typewriter');
+      if (!el) return;
+      var fullText = el.getAttribute('data-text') || el.textContent;
+      var chars = fullText.split('');
+      el.textContent = '';
+      el.style.visibility = 'visible';
+
+      var i = 0;
+      var speed = 120; // 每个字间隔(ms)，越大越慢，高级感
+
+      function type() {
+        if (i < chars.length) {
+          // 处理换行符
+          if (chars[i] === '\n') {
+            el.appendChild(document.createElement('br'));
+          } else {
+            el.appendChild(document.createTextNode(chars[i]));
+          }
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+
+      // 页面加载后延迟 0.8s 开始（等 Hero 入场动画结束）
+      setTimeout(type, 800);
+    })();
+
     // 滚动入场动画
     (function() {
       const observer = new IntersectionObserver((entries) => {
